@@ -1,7 +1,9 @@
+const querysearch = window.location.search;
+const url = `https://api.waifu.im/search?/${querysearch}`;
 function get() {       
     return new Promise(function (resolve, reject) {      
         var req = new XMLHttpRequest();
-        req.open('GET', 'https://api.waifu.im/search?orientation=LANDSCAPE&is_nsfw=true', true);
+        req.open('GET', url, true);
 		req.responseType = 'json';
         req.onload = function () {
             if (req.status == 200) {
