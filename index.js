@@ -1,5 +1,5 @@
 const querysearch = window.location.search;
-const url = `https://api.waifu.im/search?/${querysearch}`;
+const url = `https://api.waifu.im/search?${querysearch}`;
 function get() {       
     return new Promise(function (resolve, reject) {      
         var req = new XMLHttpRequest();
