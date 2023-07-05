@@ -1,5 +1,5 @@
 const querysearch = window.location.search;
-const url = 'https://api.waifu.ey.ax/search${querysearch}';
+const url = `https://api.waifu.ey.ax/search${querysearch}`;
 var cdnurl = 'https://cdn.waifu.ey.ax/' ;
 function get() {       
     return new Promise(function (resolve, reject) {      
