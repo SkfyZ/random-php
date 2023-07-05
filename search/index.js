@@ -1,5 +1,6 @@
 const querysearch = window.location.search;
-const url = `https://api.waifu.im/search${querysearch}`;
+const url = 'https://api.waifu.ey.ax/search${querysearch}';
+var cdnurl = 'https://cdn.waifu.ey.ax/' ;
 function get() {       
     return new Promise(function (resolve, reject) {      
         var req = new XMLHttpRequest();
@@ -8,7 +9,7 @@ function get() {
         req.onload = function () {
             if (req.status == 200) {
                 resolve(req.response.images[0].url);
-				imageUrl = req.response.images[0].url
+				imageUrl = cdnurl + req.response.images[0].image_id + req.response.images[0].extension
             } else {
                 reject(Error(req.statusText));
             }
