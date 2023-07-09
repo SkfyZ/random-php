@@ -1,0 +1,12 @@
+version: '3'
+services:
+  www:
+    image: tokumeikoi/lcrp
+    volumes:
+      - './www:/www'
+      - './wwwlogs:/wwwlogs'
+      - './caddy.conf:/run/caddy/caddy.conf'
+      - './.caddy:/root/.caddy'
+    ports:
+      - '80:80'
+    restart: always
