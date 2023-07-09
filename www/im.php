@@ -1,19 +1,30 @@
 <?php
     $cdnurl = "https://waifu-im.cdn.ey.ax/";
+	if (isset($_SERVER['QUERY_STRING'])) {
+		$query = $_SERVER['QUERY_STRING'];
+  		parse_str($query, $params);
+
+  		$allowedParams = [
+  	      'included_tags', 'excluded_tags', 'included_files', 'excluded_files',
+  	      'is_nsfw', 'gif', 'order_by', 'orientation', 'many', 'full',
+ 	       'width', 'height', 'byte_size'
+ 		];
 	
-    if (isset($_SERVER['QUERY_STRING'])) {
-        $query = $_SERVER['QUERY_STRING'];
+ 		foreach ($params as $name => $value) {
+        if (!in_array($name, $allowedParams)) {
+            unset($params[$name]);
+        }
     }
-	
-    else {
-        $query = "included_tags=ass&gif=false";
-    }
+
+    $query = http_build_query($params);
+}
 	
     $json = file_get_contents('https://waifu-im.api.ey.ax/search?'. $query);
     $data = json_decode($json);
     $image_id = $data->images[0]->image_id;
 	$extension = $data->images[0]->extension;
 	
+	echo $query;
     if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
         die('Error reading JSON data');
     }
