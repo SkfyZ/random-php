@@ -8,12 +8,12 @@
         $type = "nsfw";
     }
 	
-	if (isset($_GET['cat'])) {
-		$cat = $_GET['cat'];
-	}	
-	else {
-		$cat = "neko";
-	}
+    if (isset($_GET['cat'])) {
+        $cat = $_GET['cat'];
+    }	
+    else {
+        $cat = "neko";
+    }
 	
     $json = file_get_contents('https://waifu-pics.api.ey.ax/' . $type . '/' . $cat);
     $data = json_decode($json);
