@@ -17,7 +17,17 @@
     else {
         $cat = "neko";
     }
-	
+
+    if (($_GET['cat']) === "trap") {
+        $type = "nsfw";
+    }
+
+    $nsfw = array("waifu", "neko", "trap", "blowjob");
+
+    if (($_GET['type']) === "nsfw") {
+        $cat = $nsfw[array_rand($nsfw)];
+    }
+
     $json = file_get_contents('https://waifu-pics.api.ey.ax/' . $type . '/' . $cat);
     $data = json_decode($json);
 
