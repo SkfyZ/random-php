@@ -18,10 +18,10 @@
 
 	$query = http_build_query($params);
 	if(empty($query)){
-		 $query = "gif=false&included_tags=ass";
+		 $query = "gif=false&id_nsfw=false";
 	}
 	} else {
-		$query = "gif=false&included_tags=ass";
+		$query = "gif=false&id_nsfw=false";
 	}
     $json = file_get_contents('https://waifu-im.api.ey.ax/search?'. $query);
     $data = json_decode($json);

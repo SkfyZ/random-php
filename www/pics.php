@@ -8,7 +8,7 @@
         $type = $_GET['type'];
     }
     else {
-        $type = "nsfw";
+        $type = "sfw";
     }
 	
     if (isset($_GET['cat'])) {
