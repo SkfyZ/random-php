@@ -1,4 +1,7 @@
 <?php
+    header("Cache-Control: no-cache, must-revalidate");
+    header("Pragma: no-cache");
+
     $cdnurl = "https://waifu-pics.cdn.ey.ax/";
 	
     if (isset($_GET['type'])) {
