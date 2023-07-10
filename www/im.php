@@ -1,5 +1,9 @@
 <?php
+    header("Cache-Control: no-cache, must-revalidate");
+    header("Pragma: no-cache");
+
     $cdnurl = "https://waifu-im.cdn.ey.ax/";
+
     if (isset($_SERVER['QUERY_STRING'])) {
         $query = $_SERVER['QUERY_STRING'];
         parse_str($query, $params);
@@ -11,18 +15,20 @@
         ];
 
         foreach ($params as $name => $value) {
-        if (!in_array($name, $allowedParams)) {
-            unset($params[$name]);
+            if (!in_array($name, $allowedParams)) {
+                unset($params[$name]);
+            }
         }
-    }
-
-	$query = http_build_query($params);
-	if(empty($query)){
-		 $query = "gif=false&id_nsfw=false";
+        
+        $query = http_build_query($params);
+        
+        if(empty($query)){
+            $query = "gif=false&id_nsfw=false";
+        }
+    } else {
+        $query = "gif=false&id_nsfw=false";
 	}
-	} else {
-		$query = "gif=false&id_nsfw=false";
-	}
+    
     $json = file_get_contents('https://waifu-im.api.ey.ax/search?'. $query);
     $data = json_decode($json);
     $image_id = $data->images[0]->image_id;
