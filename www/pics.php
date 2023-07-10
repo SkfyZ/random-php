@@ -6,26 +6,25 @@
 	
     if (isset($_GET['type'])) {
         $type = $_GET['type'];
-    }
-    else {
+    } else {
         $type = "sfw";
-    }
-	
-    if (isset($_GET['cat'])) {
-        $cat = $_GET['cat'];
-    }	
-    else {
-        $cat = "neko";
     }
 
     if (($_GET['cat']) === "trap") {
         $type = "nsfw";
     }
 
-    $nsfw = array("waifu", "neko", "trap", "blowjob");
-
     if (($_GET['type']) === "nsfw") {
+        $nsfw = array("waifu", "neko", "trap", "blowjob");
         $cat = $nsfw[array_rand($nsfw)];
+    }
+
+    if (isset($_GET['cat'])) {
+        $cat = $_GET['cat'];
+    } else {
+        if ($type === "sfw") {
+            $cat = "neko";
+        }
     }
 
     $json = file_get_contents('https://waifu-pics.api.ey.ax/' . $type . '/' . $cat);
